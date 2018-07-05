@@ -3,7 +3,7 @@ node('master') {
     checkout scm
   }
   stage('Build & Unit test') {
-    mvn clean verify;
+    'mvn clean verify';
     junit '**/target/surefire-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
