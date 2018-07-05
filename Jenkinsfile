@@ -8,7 +8,7 @@ node('master') {
     archive 'target/*.jar'
   }
   stage('Static Code Analysis') {
-    mvn clean verify sonar:sonar -Dsonar.projectName='hello-world-greeting';
+    'mvn clean verify sonar:sonar -Dsonar.projectName=hello-world-greeting -Dsonar.projectKey=hello-world-greeting -DprojectVersion=BUILD_NUMBER';
   }
   stage('Integration Test') {
       mvn clean verify -Dsurefire.skip;
