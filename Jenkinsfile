@@ -2,7 +2,7 @@ node('master') {
   stage('Poll') {
     checkout scm
   }
-  stage('Build a Unit test') {
+  stage('Build & Unit test') {
     'mvn clean verify -DskipITs=true';
     junit '**/target/surefire-reports/TEST-*.xml'
     archive 'target/*.jar'
