@@ -3,7 +3,7 @@ node('master') {
     checkout scm
   }
   stage('Build & Unit test') {
-    bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -DskipITs=true';
+    bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -DskipITs=true -s C:/Users/zzzzzpod/.m2/settings.xml';
     junit '**/target/surefire-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
