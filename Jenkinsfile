@@ -11,7 +11,7 @@ node('docker') {
     mvn clean verify sonar:sonar;
   }
   stage('Integration Test') {
-      mvn clean verify -Dsurefire.skip=true;
+      mvn clean verify -Dsurefire.skip;
     junit '**/target/failsafe-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
