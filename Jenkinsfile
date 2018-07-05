@@ -3,7 +3,7 @@ node('docker') {
     checkout scm
   }
   stage('Build a Unit test') {
-    sh 'mvn clean verify -DskipITs=true';
+    mvn clean verify -DskipITs=true;
     junit '**/target/surefire-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
