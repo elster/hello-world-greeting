@@ -8,7 +8,7 @@ node('docker') {
     archive 'target/*.jar'
   }
   stage('Static Code Analysis') {
-    mvn clean verify sonar:sonar;
+    mvn clean verify sonar:sonar -Dsonar.projectName=hello-world-greeting;
   }
   stage('Integration Test') {
       mvn clean verify -Dsurefire.skip;
