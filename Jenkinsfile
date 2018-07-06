@@ -1,5 +1,4 @@
 node('master') {
-  def javaHome = tool 'JDK 8u171'
   stage('Poll') {
     checkout scm
   }
