@@ -23,7 +23,7 @@ node('master') {
   }
   stage('Publish') {
     def server = Artifactory.server 'Default Artifactory Server'
-    def uploadSpec = """ {
+    def uploadSpec = """{
       "files": {
         {
           "pattern": "target/hello-0.0.1.war",
