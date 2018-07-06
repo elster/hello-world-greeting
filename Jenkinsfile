@@ -3,15 +3,21 @@ node('master') {
     checkout scm
   }
   stage('Build & Unit test') {
-    bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -DskipITs=true -s C:/Users/zzzzzpod/.m2/settings.xml';
+    withMaven(maven: 'M3') {
+      bat 'mvn clean verify -DskipITs=true';
+    }
     junit '**/target/surefire-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
   stage('Static Code Analysis') {
-    bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify sonar:sonar -Dsonar.projectName=hello-world-greeting -Dsonar.projectKey=hello-world-greeting -DprojectVersion=BUILD_NUMBER';
+    withMaven(maven: 'M3') {
+      bat 'mvn clean verify sonar:sonar -Dsonar.projectName=hello-world-greeting -Dsonar.projectKey=hello-world-greeting -DprojectVersion=BUILD_NUMBER';
+    }
   }
   stage('Integration Test') {
-    bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -Dsurefire.skip=true';
+    withMaven(maven: 'M3') {
+      bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -Dsurefire.skip=true';
+    }
     junit '**/target/failsafe-reports/TEST-*.xml'
     archive 'target/*.jar'
   }
