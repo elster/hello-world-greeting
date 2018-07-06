@@ -16,7 +16,7 @@ node('master') {
   }
   stage('Integration Test') {
     withMaven(maven: 'M3') {
-      bat 'D:/Apps/apache-maven-3.5.4/bin/mvn clean verify -Dsurefire.skip=true';
+      bat 'mvn clean verify -Dsurefire.skip=true';
     }
     junit '**/target/failsafe-reports/TEST-*.xml'
     archive 'target/*.jar'
